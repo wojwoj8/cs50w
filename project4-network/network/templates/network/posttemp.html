@@ -1,0 +1,47 @@
+
+{% for post in page_obj %}
+        <div class="listofposts">
+            
+            <a style="display:inline;" href="{% url 'profile' post.user.username %}"><b>{{post.user.username}}</b></a>
+            <p class="postcontent">{{post.post}}</p>
+            <p style="color:#bbbbbb;">{{post.post_date}}</p>
+            <div class="like" style="display:block; margin-bottom:10px;">
+            {% if user.is_authenticated %}
+            {% if request.user in post.likes.all %}
+                <input type="image" class="img" src=https://cdn-icons-png.flaticon.com/512/25/25423.png id="{{post.id}}" style="width:22px; height:22px;">
+            {% else %}
+                <input type="image" class="img" src=https://cdn-icons-png.flaticon.com/512/25/25297.png id="{{post.id}}" style="width:22px; height:22px;">
+            {% endif %}
+            {% else %}
+                <img src=https://cdn-icons-png.flaticon.com/512/25/25297.png style="width:22px; height:22px;">
+            {% endif %}
+            <p style="display:inline;">{{post.likes.count}}</p>
+            </div>
+            {% if post.user.username == request.user.username %}
+                <input class="btn btn-dark butt" type="button" value="Edit" id="{{post.id}}" data-id="{{post.id}}" style="margin-top:5px; display:flex;">
+            {% endif %}
+        </div>
+        
+{% endfor %}
+<ul class="pagination justify-content-center" style="margin-top:5px;">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    {% endif %}
+    <li class="page-item disabled">
+        <a href="?page={{ page_obj.number }}" class="page-link">
+            <span aria-hidden="true">{{ page_obj.number }}</span>
+        </a>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+        <!-- <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a> -->
+    {% endif %}
+</ul>
+</div>

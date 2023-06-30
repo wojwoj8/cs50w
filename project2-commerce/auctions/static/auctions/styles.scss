@@ -1,0 +1,106 @@
+$border-color: rgba(128, 125, 125, 0.174);
+
+.topl{
+    background-color: $border-color;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.message{
+    color:red;
+    font-size:24px;
+    text-align:center;
+}
+.cont{
+    
+    margin-left: auto;
+    margin-right: auto;
+    //border: 3px solid $border-color;
+    //border: 1px solid $border-color;
+    width:1240px;
+    height:auto;
+    img{
+        //margin-top:10px;
+        border: 1px solid $border-color;
+    }
+}
+.test{
+    display:flex;
+}
+.image{
+    
+    justify-content: start;
+    margin-right: 10px;
+}
+.desclist{
+    justify-content: start;
+    margin-right: 10px;
+    //word-wrap: break-word;
+}
+.wrapper{
+    
+    //justify-content: space-between;
+    display:flex;
+}
+.details{
+    position:relative;
+    margin-left: 210px;
+    p{
+        font-weight: bold;
+    }
+    
+}
+.index{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.listings{
+    display: inline-block;
+    width:502px;
+    height:auto;
+    margin-bottom:20px;
+    border: 1px solid $border-color;
+}
+
+div {
+    p{
+        word-wrap: break-word;
+    }
+}
+h2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.desc{
+    display:grid;
+}
+
+a{
+    color: rgba(42, 155, 163, 0.991);
+}
+.forms{
+    display: block;
+    width:600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.createlistingform{
+    display: block;
+    width:1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.commentp{
+    border-bottom: 1px solid $border-color;
+}
+.comment{
+    p{
+        margin-bottom:0px;
+    }
+}

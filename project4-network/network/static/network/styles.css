@@ -1,0 +1,35 @@
+.newpost {
+  display: grid;
+  text-align: center;
+}
+
+label {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#message {
+  color: red;
+  text-align: center;
+}
+
+.listofposts {
+  border: 1px solid #ced4da;
+  border-radius: 20px;
+  padding: 0.375rem 0.75rem;
+  margin-top: 8px;
+}
+.listofposts a {
+  display: block;
+}
+
+.profile h2 {
+  text-align: center;
+}
+.profile p {
+  font-size: 18px;
+}
+
+.notlogged {
+  text-align: center;
+}/*# sourceMappingURL=styles.css.map */

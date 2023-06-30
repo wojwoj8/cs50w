@@ -1,0 +1,40 @@
+textarea {
+  min-height: 400px;
+}
+
+#emails-view div {
+  border: 1px solid black;
+  margin-top: 3px;
+  margin: 5px;
+}
+#emails-view p {
+  margin: 5px;
+}
+
+.inboxcont {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  justify-content: space-between;
+  display: flex;
+  color: grey;
+  float: right;
+}
+
+#read-email button {
+  float: right;
+}
+
+.readdata {
+  word-wrap: break-word;
+}
+.readdata p {
+  white-space: pre;
+}
+
+#archive {
+  display: block;
+  margin-right: 5px;
+}/*# sourceMappingURL=styles.css.map */

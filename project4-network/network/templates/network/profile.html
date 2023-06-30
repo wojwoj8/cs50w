@@ -1,0 +1,26 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="profile">
+        <h2>{{profile.username}}</h2>
+        <br>
+        <p>Name: {{profile.username}}</p>
+        <p>Followers: {{profile.followers_nr}}</p>
+        <p>Follows: {{profile.follows_nr}}</p>
+        {% if user.is_authenticated %}
+        {% if request.user.username != profile.username %}
+            <form action="{% url 'profile' profile.username %}" method="POST">
+                {% csrf_token %}
+                    <input class="btn btn-dark" type="submit" name="follow" value="{{button}}">
+            </form>
+            {% endif %}
+        {% endif %}
+    </div>
+    
+    {% include "network/posttemp.html" %}
+
+
+</div>
+{% endblock %}

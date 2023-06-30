@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if message %}
+    <div class="message">{{ message }}</div>
+    {% endif %}
+    <h2>Active Listings</h2>
+    <div class="index">
+        {% for listing in listings  %}
+        {% if listing.active == True %}
+        <a href="{% url 'list' listing.id %}">
+        <div class="listings">
+            <div style="border-bottom:1px solid #ebebeb">
+            {% if listing.url %}
+                <img src="{{listing.url}}" alt="Image" style="width:500px; height:400px;">
+            {% else %}
+                <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="Image" style="width:500px; height:400px;">
+            {% endif %}
+        </div>
+            <div class="desc">
+                
+                <p><b>{{listing.title}}</b></p>
+                {% if listing.actual_price %}
+                    <p><b>Price: {{listing.actual_price|floatformat:2}}$</b></p>
+                {% else %}
+                    <p><b>Price: {{listing.starting_bid|floatformat:2}}$</b></p>
+                {% endif %}
+                <p><b>{{listing.description}}</b></p>
+             
+                
+            </div>
+        </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

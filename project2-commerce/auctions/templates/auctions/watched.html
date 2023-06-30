@@ -1,0 +1,39 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if message %}
+    <div class="message">{{ message }}</div>
+    {% endif %}
+    <h2>Watched items:</h2>
+    <div class="index">
+        {% for wat in watch  %}
+        {% if wat.watched == True %}
+        {% if wat.item.active == True %}
+        <a href="{% url 'list' wat.item.id %}">
+            {% endif %}
+        {% if wat.item.active == False %}
+            <a href="{% url 'close' wat.item.id %}">
+            {% endif %}
+        <div class="listings">
+            {% if wat.item.url %}
+                <img src="{{wat.item.url}}" alt="Image" style="width:500px; height:400px;">
+            {% else %}
+                <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="Image" style="width:500px; height:400px;">
+            {% endif %}
+            <div class="desc">
+
+                <p><b>{{wat.item.title}}</b></p>
+                {% if wat.item.actual_price %}
+                    <p><b>Price: {{wat.item.actual_price|floatformat:2}}$</b></p>
+                {% else %}
+                    <p><b>Price: {{wat.item.starting_bid|floatformat:2}}$</b></p>
+                {% endif %}
+                <p><b>{{wat.item.description}}</b></p>
+                
+            </div>
+        </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

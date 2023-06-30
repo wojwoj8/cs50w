@@ -1,0 +1,30 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+{% if user.is_authenticated %}
+
+<div class="container">
+    <div class="newpost">
+        <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-floating">
+            
+            {% for item in form %}
+                <label>{{ item.label }}</label> 
+                {{ item }}
+                {% if item.help_text %}
+                    {{ item.help_text|safe }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <input class="btn btn-dark" type="submit" value="Post" style="margin-top:5px; display:flex;">
+    </form>
+    </div>
+
+{% endif %}
+
+    {% include "network/posttemp.html" %}
+
+</div>
+
+{% endblock %}

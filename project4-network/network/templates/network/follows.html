@@ -1,0 +1,15 @@
+{% extends "network/layout.html" %}
+{% block body %}
+<div class="container">
+
+    {% for post in posts %}
+        <div class="listofposts">
+            <a href="{% url 'profile' post.user.username %}"><b>{{post.user.username}}</b></a>
+            <p>{{post.post}}</p>
+            <p style="color:#bbbbbb;">{{post.post_date}}</p>
+            <p>Likes: {{post.like}}</p>
+        </div>
+    {% endfor %}
+    {% include "network/posttemp.html" %}
+</div>
+{% endblock %}

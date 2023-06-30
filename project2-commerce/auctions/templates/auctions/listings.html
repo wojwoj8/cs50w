@@ -1,0 +1,120 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if message %}
+    <div class="message"><b>{{ message }}</b></div>
+    <br>
+    {% endif %}
+
+    
+    <div class="cont">
+        <div class="test">
+    <div class="image">
+        {% if list.url %}
+            <img src="{{list.url}}" alt="Image" style="max-width:480px; max-height:504px;">
+        {% else %}
+            <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="Image" style="width:500px; height:400px;">
+        {% endif %}
+    </div>
+        <div class="desclist">
+            <h3>{{list.title}}</h3>
+            <br>
+            <p><b>{{list.description}}</b></p>
+            <div class="wrapper">
+                <div>
+            {% if bids %}
+                <p><b>Price: {{bids.actual_bid|floatformat:2}}$</b></p>
+            {% else %}
+                <p><b>Price: {{list.starting_bid|floatformat:2}}$</b></p>
+            {% endif %}           
+    {% if list.active == True %}
+    <div>
+    <form action="{% url 'list' list.id %}" method="POST">
+        {% csrf_token %}
+        <input type="number" name="bid" placeholder="Bid" step="0.01">
+        <input class="btn btn-dark" type="submit" value="Place Bid">
+    </form>
+</div>
+    <div>
+        <form action="{% url 'watch' list.id %}" method="POST">
+            {% csrf_token %}
+            {% if watch.watched == False or watch == False %}
+                <input class="btn btn-dark" type="submit" name="watch" value="Watch">
+            {% else %}
+                <input class="btn btn-dark" type="submit" name="watch" value="Unwatch">
+            {% endif %}
+        </form>
+    </div>
+    {% if username == list.seller %}
+    <div style="margin-top:8px;">
+    <form action="{% url 'close' list.id %}" method="POST">
+        {% csrf_token %}
+        <input class="btn btn-dark" type="submit" name="act" value="Close auction">
+    </form>
+    </div>
+    {% endif %}
+</div>
+    <div class="details">
+        <h3>Auction details:</h3>
+            <p>Listed by: {{list.seller}}</p>
+            {% if list.category %}
+                <p>Category: {{list.category}}</p>
+            {% else %}
+                <p>Category: No Category Listed</p>
+            {% endif %}
+            {% if bids.winner and bids.winner != username %}
+                <p>Actual winner: {{bids.winner}}</p>
+            {% elif bids.winner and bids.winner == username %}
+                <p>You are actual winner!</p>
+            {% else %}
+                <p>No bid leader</p>
+            {% endif %}
+    </div>
+    </div>
+</div>
+        </div>
+
+    <div class="comment">
+        {% if comment %}
+            <h3>Comments:</h3>
+        {% else %}
+            <h3>No Comments.</h3>
+        {% endif %}
+      
+            {% for comm in comment %}
+            
+              <p><b>{{comm.username}}:</b></p>
+              <p class="commentp">{{comm.com}}</p>
+
+          {% endfor %}
+        <br> 
+        <form action="{% url 'comment' list.id %}" method="POST">
+            {% csrf_token %}
+            <label for="comm">Add Comment:</label>
+            <br>
+            <textarea name="comm" rows="5" cols="100"></textarea>
+            <br>
+            <input class="btn btn-dark" type="submit" name="com" value="Add comment">
+        </form>
+    </div>
+    {% else %}
+</div>
+</div>
+<br>
+<div class="comment">
+    {% if comment %}
+        <h3>Comments:</h3>
+    {% else %}
+        <h3>No Comments.</h3>
+    {% endif %}
+  
+        {% for comm in comment %}
+        
+          <p><b>{{comm.username}}:</b></p>
+          <p class="commentp">{{comm.com}}</p>
+
+      {% endfor %}
+    <br> 
+    {% endif %}
+    
+{% endblock %}

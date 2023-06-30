@@ -1,0 +1,55 @@
+textarea {
+    min-height: 400px;
+}
+
+#emails-view{
+    div{
+        border: 1px solid black;
+        margin-top: 3px;
+        margin: 5px;
+        //display:flex;
+        
+    }
+    p{
+        margin:5px;
+    }
+}
+
+.inboxcont{
+    display:flex;
+    justify-content: space-between;
+}
+
+
+.date{
+    justify-content: space-between;
+    display:flex;
+    color:grey;
+    float:right;
+}
+#read-email{
+    
+    button{
+        float:right;
+    }
+    
+        
+    
+}
+//read data (from,to,sub,time)
+.readdata{
+    
+    //width:100%;
+    //float:left;
+    //display:inline;
+    word-wrap: break-word;
+    p{
+        white-space: pre;
+    }
+    
+}
+
+#archive{
+    display:block;
+    margin-right: 5px;
+}

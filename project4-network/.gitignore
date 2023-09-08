@@ -1,0 +1,11 @@
+/venv
+.Pipfile
+.Pipfile.lock
+*.pyc
+__pycache__
+*.sqlite3
+*.db
+/backend/media/user_profiles
+/.vscode
+Pipfile
+Pipfile.lock
